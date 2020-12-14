@@ -34,3 +34,7 @@
 - userのidが5以下の人たち
 - 注文をしたuserの中で注文数が多い順に5人限定で並べる
 - shopの名前がnilのものを取得してください
+
+
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/18fcccec42a7905784688feebf88af91.png)](https://gyazo.com/18fcccec42a7905784688feebf88af91)
