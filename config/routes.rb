@@ -15,7 +15,6 @@ Rails.application.routes.draw do
       get :exercise10
       get :exercise11
       get :exercise12
-      get :exercise13
     end
   end
 end

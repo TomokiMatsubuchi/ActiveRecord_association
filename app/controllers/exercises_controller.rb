@@ -20,15 +20,16 @@ class ExercisesController < ApplicationController
 
   def exercise3
     # 【要件】全てのcityのidとnameを返すこと
-    #  - @resultのクラスは City::ActiveRecord_Relation であること
-    #  - @resultが内包する全てのオブジェクトのクラスはCityであり、それらのオブジェクトはidとnameの属性しか持っていないこと
+    #  - ActiveRecord::Baseのメソッドを使うこと
+    #  - @resultが内包する全てのオブジェクトのクラスはCityであり、
+    #    それらのオブジェクトはidとnameの属性しか持っていないこと
     @query = <<~EOS
       City.select(:id, :name)
     EOS
     @result = eval(@query.chomp)
   end
 
-  def exercise
+  def exercise4
     # 【要件】渋谷区の全てのshopを返すこと
     #  - Cityのアソシエーションメソッドを使うこと
     @query = <<~EOS
@@ -60,7 +61,6 @@ class ExercisesController < ApplicationController
 
   def exercise7
     # 【要件】全てのuserとそのuserの注文数を返すこと
-    #  - @resultのクラスは User::ActiveRecord_Relation であること
     #  - @resultが内包する全てのオブジェクトのクラスはUserであり、
     #    それらのオブジェクトはorders_countという属性を持ち、それがそのuserの注文数を表していること
     #  - ActiveRecord::Base#left_outer_joinsを使用すること
@@ -75,7 +75,6 @@ class ExercisesController < ApplicationController
 
   def exercise8
     # 【要件】全てのuserとそのuserの注文した料理の合計金額を合計金額の降順で返すこと。
-    #  - @resultのクラスは User::ActiveRecord_Relation であること
     #  - @resultが内包する全てのオブジェクトのクラスはUserであり、
     #    それらのオブジェクトはtotal_priceという属性を持ち、それがそのuserの注文した料理の合計金額を表していること
     #  - ActiveRecord::Base#joinsを使用すること
@@ -105,28 +104,17 @@ class ExercisesController < ApplicationController
   end
 
   def exercise10
-    # 【要件】categoryの名前が"野菜"の料理(food)を一番多く提供しているshopのあるcityを返すこと
-    #  - @resultのクラスは City であること
-    #  - ActiveRecord::Base#joinsを使用すること
-    #  - ActiveRecord::Base#whereを使用すること
-    #  - ActiveRecord::Base#selectを使用すること
-    #  - ActiveRecord::Base#groupを使用すること
-    #  - ActiveRecord::Base#orderを使用すること
+    # 【要件】selectの引数を修正し、エラーにならずにのuser_idを返すこと
+    #  - selectの引数以外は変更しないこと
+    #  - メソッドも追加しないこと
+      # User.first.orders.select(:id).last.user_id
     @query = <<~EOS
-      City.joins(:shops, shops: [foods: :category]).where(categories: { name: "野菜" }).select("cities.*, COUNT(categories.*) as vegetable_counts").group("cities.id").order("vegetable_counts DESC").first
+      User.first.orders.select(:id, "orders.user_id").last.user_id
     EOS
     @result = eval(@query.chomp)
   end
 
   def exercise11
-    # 【要件】エラーにならずにuser_idを返すこと
-    @query = <<~EOS # User.first.orders.select(:id, "orders.user_id").last.user_id
-      User.first.orders.select(:id).last.user_id
-    EOS
-    @result = eval(@query.chomp)
-  end
-
-  def exercise12
     # 【要件】名前に"a"が含まれる全てのuserを返すこと
     #  - ActiveRecord::Base#whereを使用すること
     @query = <<~EOS
@@ -135,7 +123,7 @@ class ExercisesController < ApplicationController
     @result = eval(@query.chomp)
   end
 
-  def exercise13
+  def exercise12
     # 【要件】userのidが5から10のuserを返すこと
     #  - ActiveRecord::Base#whereを使用すること
     @query = <<~EOS
@@ -145,6 +133,3 @@ class ExercisesController < ApplicationController
   end
 
 end
-
-
-# SPECはActiveRecordのメソッドを使わなければ答えにならない
