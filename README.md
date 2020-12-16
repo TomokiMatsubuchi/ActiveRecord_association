@@ -32,5 +32,11 @@ $ rails c
 ```
 適宜、Railsコンソールでコマンドを試しながら適切なコードを探すこと
 
+## テストの実行（解答の正誤の確認）
+```terminal
+$ bundle exec rspec spec/controllers/exercises_controller_spec.rb
+```
+
+
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/18fcccec42a7905784688feebf88af91.png)](https://gyazo.com/18fcccec42a7905784688feebf88af91)

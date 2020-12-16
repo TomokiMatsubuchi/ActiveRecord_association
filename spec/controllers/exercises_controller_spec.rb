@@ -14,13 +14,19 @@ RSpec.describe ExercisesController, type: :controller do
       ).to eq true
     end
     it "ActiveRecord::Base#findを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("find")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("find")}
+      ).to eq true
     end
     it "ActiveRecord::Base#countを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("count")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("count")}
+      ).to eq true
     end
     it "User#ordersを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("orders")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("orders")}
+      ).to eq true
     end
 
   end
@@ -81,10 +87,14 @@ RSpec.describe ExercisesController, type: :controller do
       ).to eq true
     end
     it "ActiveRecord::Base#joinsを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      ).to eq true
     end
     it "ActiveRecord::Base#whereを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      ).to eq true
     end
     it "@resultのクラスは、Food::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
       expect(
@@ -105,13 +115,19 @@ RSpec.describe ExercisesController, type: :controller do
       ).to eq true
     end
     it "ActiveRecord::Base#joinsを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      ).to eq true
     end
     it "ActiveRecord::Base#whereを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      ).to eq true
     end
     it "ActiveRecord::Base#sumを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("sum")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("sum")}
+      ).to eq true
     end
   end
 
@@ -128,16 +144,24 @@ RSpec.describe ExercisesController, type: :controller do
       expect(result).to eq true
     end
     it "ActiveRecord::Base#left_outer_joinsを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("left_outer_joins")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("left_outer_joins")}
+      ).to eq true
     end
     it "ActiveRecord::Base#distinctを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("distinct")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("distinct")}
+      ).to eq true
     end
     it "ActiveRecord::Base#selectを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("select")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("select")}
+      ).to eq true
     end
     it "ActiveRecord::Base#groupを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("group")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("group")}
+      ).to eq true
     end
     it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
       expect(
@@ -159,16 +183,24 @@ RSpec.describe ExercisesController, type: :controller do
       expect(result).to eq true
     end
     it "ActiveRecord::Base#joinsを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      ).to eq true
     end
     it "ActiveRecord::Base#selectを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("select")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("select")}
+      ).to eq true
     end
     it "ActiveRecord::Base#groupを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("group")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("group")}
+      ).to eq true
     end
     it "ActiveRecord::Base#orderを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("order")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("order")}
+      ).to eq true
     end
     it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
       expect(
@@ -214,19 +246,29 @@ RSpec.describe ExercisesController, type: :controller do
       expect(assigns(:result)).to match top_5_users
     end
     it "ActiveRecord::Base#joinsを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
+      ).to eq true
     end
     it "ActiveRecord::Base#whereを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      ).to eq true
     end
     it "ActiveRecord::Base#selectを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("select")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("select")}
+      ).to eq true
     end
     it "ActiveRecord::Base#groupを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("group")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("group")}
+      ).to eq true
     end
     it "ActiveRecord::Base#orderを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("order")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("order")}
+      ).to eq true
     end
     it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
       expect(
@@ -283,7 +325,9 @@ RSpec.describe ExercisesController, type: :controller do
       ).to match User.all.select{|user| user.name.include?("a") }
     end
     it "ActiveRecord::Base#whereを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      ).to eq true
     end
     it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
       expect(
@@ -300,7 +344,9 @@ RSpec.describe ExercisesController, type: :controller do
       ).to match [5, 6, 7, 8, 9, 10]
     end
     it "ActiveRecord::Base#whereを使っていること" do
-      actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("where")}
+      ).to eq true
     end
     it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
       expect(
