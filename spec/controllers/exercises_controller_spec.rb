@@ -250,11 +250,6 @@ RSpec.describe ExercisesController, type: :controller do
         actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
       ).to eq true
     end
-    it "ActiveRecord::Base#whereを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("where")}
-      ).to eq true
-    end
     it "ActiveRecord::Base#selectを使っていること" do
       expect(
         actual_methods(assigns(:query)).any?{|x| x.include?("select")}
@@ -268,6 +263,11 @@ RSpec.describe ExercisesController, type: :controller do
     it "ActiveRecord::Base#orderを使っていること" do
       expect(
         actual_methods(assigns(:query)).any?{|x| x.include?("order")}
+      ).to eq true
+    end
+    it "ActiveRecord::Base#limitを使っていること" do
+      expect(
+        actual_methods(assigns(:query)).any?{|x| x.include?("limit")}
       ).to eq true
     end
     it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do

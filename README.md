@@ -36,6 +36,8 @@ $ rails c
 ```terminal
 $ bundle exec rspec spec/controllers/exercises_controller_spec.rb
 ```
+### 期待する出力結果
+[![Image from Gyazo](https://i.gyazo.com/74de5a957529ecf45065aee8e29df751.png)](https://gyazo.com/74de5a957529ecf45065aee8e29df751)
 
 
 ## ER図
