@@ -133,45 +133,6 @@ RSpec.describe ExercisesController, type: :controller do
 
   describe "exercise7" do
     before { get :exercise7 }
-    it "全てのuserとそのuserの注文数を返すこと" do
-      #  @resultが内包する全てのオブジェクトのクラスはUserであり、
-      #  それらのオブジェクトはorders_countという属性を持ち、それがそのuserの注文数を表していること
-      result = assigns(:result).all? do |user|
-        user.class.to_s == "User" &&
-          user.attributes.has_key?("orders_count") &&
-          user.orders_count == user.orders.map{|x| x.foods }.flatten.size
-      end
-      expect(result).to eq true
-    end
-    it "ActiveRecord::Base#left_outer_joinsを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("left_outer_joins")}
-      ).to eq true
-    end
-    it "ActiveRecord::Base#distinctを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("distinct")}
-      ).to eq true
-    end
-    it "ActiveRecord::Base#selectを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("select")}
-      ).to eq true
-    end
-    it "ActiveRecord::Base#groupを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("group")}
-      ).to eq true
-    end
-    it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
-      expect(
-        assigns(:result).class.to_s == "User::ActiveRecord_Relation"
-      ).to eq true
-    end
-  end
-
-  describe "exercise8" do
-    before { get :exercise8 }
     it "全てのuserとそのuserの注文した料理の合計金額を合計金額の降順で返すこと" do
       #  @resultが内包する全てのオブジェクトのクラスはUserであり、
       #  それらのオブジェクトはtotal_priceという属性を持ち、それがそのuserの注文した料理の合計金額を表していること
@@ -209,76 +170,8 @@ RSpec.describe ExercisesController, type: :controller do
     end
   end
 
-  describe "exercise9" do
-    before { get :exercise9 }
-    it "注文した料理の合計金額の多いuserのトップ5を返すこと" do
-      user_and_orders =
-        Order.all.reject do |order|
-            order.user_id.nil?
-        end.
-        group_by do |order|
-          User.all.select{|user| user == order.user }
-        end
-
-      user_and_foods =
-        user_and_orders.map do |user, orders|
-          [
-            user,
-            orders.map do |order|
-              Food.find(
-                OrderFood.all.find_by_order_id(order.id).food_id
-              )
-            end
-          ]
-        end.to_h
-
-      user_and_total_prices =
-        user_and_foods.map do |user, foods|
-          [
-            user,
-            foods.sum(&:price)
-          ]
-        end
-        
-      top_5_users =
-        user_and_total_prices.sort{|a, b| b[1] <=> a[1] }.first(5).map{|user, price| user }.flatten
-
-      expect(assigns(:result)).to match top_5_users
-    end
-    it "ActiveRecord::Base#joinsを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("joins")}
-      ).to eq true
-    end
-    it "ActiveRecord::Base#selectを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("select")}
-      ).to eq true
-    end
-    it "ActiveRecord::Base#groupを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("group")}
-      ).to eq true
-    end
-    it "ActiveRecord::Base#orderを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("order")}
-      ).to eq true
-    end
-    it "ActiveRecord::Base#limitを使っていること" do
-      expect(
-        actual_methods(assigns(:query)).any?{|x| x.include?("limit")}
-      ).to eq true
-    end
-    it "@resultのクラスは、User::ActiveRecord_Relationであること(ActiveRecordのメソッドのみを使っていること)" do
-      expect(
-        assigns(:result).class.to_s == "User::ActiveRecord_Relation"
-      ).to eq true
-    end
-  end
-
-  describe "exercise10" do
-    subject(:action) { get :exercise10 }
+  describe "exercise8" do
+    subject(:action) { get :exercise8 }
     it { is_expected.to have_http_status(:ok) }
     context "selectの引数以外は変更していないこと" do
       before { subject }
@@ -317,8 +210,8 @@ RSpec.describe ExercisesController, type: :controller do
     end
   end
 
-  describe "exercise11" do
-    before { get :exercise11 }
+  describe "exercise9" do
+    before { get :exercise9 }
     it "名前に'a'が含まれる全てのuserを返すこと" do
       expect(
         assigns(:result)
@@ -336,8 +229,8 @@ RSpec.describe ExercisesController, type: :controller do
     end
   end
 
-  describe "exercise12" do
-    before { get :exercise12 }
+  describe "exercise10" do
+    before { get :exercise10 }
     it "userのidが5から10のuserを返すこと" do
       expect(
         assigns(:result).ids

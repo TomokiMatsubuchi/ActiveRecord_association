@@ -60,20 +60,6 @@ class ExercisesController < ApplicationController
   end
 
   def exercise7
-    # 【要件】全てのuserとそのuserの注文数を返すこと
-    #  - @resultが内包する全てのオブジェクトのクラスはUserであり、
-    #    それらのオブジェクトはorders_countという属性を持ち、それがそのuserの注文数を表していること
-    #  - ActiveRecord::Base#left_outer_joinsを使用すること
-    #  - ActiveRecord::Base#disticntを使用すること
-    #  - ActiveRecord::Base#selectを使用すること
-    #  - ActiveRecord::Base#groupを使用すること
-    @query = <<~EOS
-      # ここに記述
-    EOS
-    @result = eval(@query.chomp)
-  end
-
-  def exercise8
     # 【要件】全てのuserとそのuserの注文した料理の合計金額を合計金額の降順で返すこと。
     #  - @resultが内包する全てのオブジェクトのクラスはUserであり、
     #    それらのオブジェクトはtotal_priceという属性を持ち、それがそのuserの注文した料理の合計金額を表していること
@@ -87,23 +73,7 @@ class ExercisesController < ApplicationController
     @result = eval(@query.chomp)
   end
 
-  def exercise9
-    # 【要件】注文した料理の合計金額の多いuserのトップ5を返すこと
-    #  - @resultのクラスは User::ActiveRecord_Relation であること
-    #  - @resultが内包する全てのオブジェクトのクラスはUserであり、
-    #    それらのオブジェクトはtotal_priceという属性を持ち、それがそのuserの注文した料理の合計金額を表していること
-    #  - ActiveRecord::Base#joinsを使用すること
-    #  - ActiveRecord::Base#selectを使用すること
-    #  - ActiveRecord::Base#groupを使用すること
-    #  - ActiveRecord::Base#orderを使用すること
-    #  - ActiveRecord::Base#limitを使用すること
-    @query = <<~EOS
-      # ここに記述
-    EOS
-    @result = eval(@query.chomp)
-  end
-
-  def exercise10
+  def exercise8
     # 【要件】selectの引数を修正し、エラーにならずにのuser_idを返すこと
     #  - selectの引数以外は変更しないこと
     #  - メソッドも追加しないこと
@@ -114,7 +84,7 @@ class ExercisesController < ApplicationController
     @result = eval(@query.chomp)
   end
 
-  def exercise11
+  def exercise9
     # 【要件】名前に"a"が含まれる全てのuserを返すこと
     #  - ActiveRecord::Base#whereを使用すること
     @query = <<~EOS
@@ -123,7 +93,7 @@ class ExercisesController < ApplicationController
     @result = eval(@query.chomp)
   end
 
-  def exercise12
+  def exercise10
     # 【要件】userのidが5から10のuserを返すこと
     #  - ActiveRecord::Base#whereを使用すること
     @query = <<~EOS

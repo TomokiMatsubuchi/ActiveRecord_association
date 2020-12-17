@@ -1,5 +1,5 @@
 ## 要件
-app/controllers/exercises_controller.rbに、exercise1~12のアクションを用意した。  
+app/controllers/exercises_controller.rbに、exercise1~10のアクションを用意した。  
 それぞれのアクション内に要件が記述してあるので、それに従ってアクションを完成させること。
 
 ### 例

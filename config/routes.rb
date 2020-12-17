@@ -13,8 +13,6 @@ Rails.application.routes.draw do
       get :exercise8
       get :exercise9
       get :exercise10
-      get :exercise11
-      get :exercise12
     end
   end
 end
