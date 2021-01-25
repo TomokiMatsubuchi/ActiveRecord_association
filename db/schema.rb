@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210125081833) do
+ActiveRecord::Schema.define(version: 20210125090120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "line_1"
+    t.string "line_2"
+    t.string "line_3"
+    t.string "city"
+    t.string "prefecture"
+    t.string "postalcode"
+    t.string "addressable_type", null: false
+    t.bigint "addressable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -85,10 +99,8 @@ ActiveRecord::Schema.define(version: 20210125081833) do
 
   create_table "shops", force: :cascade do |t|
     t.string "name"
-    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_shops_on_city_id"
   end
 
   add_foreign_key "foods", "categories"
