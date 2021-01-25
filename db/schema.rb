@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115024348) do
+ActiveRecord::Schema.define(version: 20210125081833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20171115024348) do
   end
 
   create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,10 +68,10 @@ ActiveRecord::Schema.define(version: 20171115024348) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "shop_genres", force: :cascade do |t|
@@ -85,18 +91,12 @@ ActiveRecord::Schema.define(version: 20171115024348) do
     t.index ["city_id"], name: "index_shops_on_city_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "foods", "categories"
   add_foreign_key "foods", "shops"
   add_foreign_key "order_foods", "foods"
   add_foreign_key "order_foods", "orders"
   add_foreign_key "order_informations", "orders"
-  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "customers"
   add_foreign_key "shop_genres", "genres"
   add_foreign_key "shop_genres", "shops"
 end
