@@ -41,4 +41,4 @@ $ bundle exec rspec spec/controllers/exercises_controller_spec.rb
 
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/18fcccec42a7905784688feebf88af91.png)](https://gyazo.com/18fcccec42a7905784688feebf88af91)
+[![Image from Gyazo](https://i.gyazo.com/47095be0fe0f60ade0e0cdf95860ba33.png)](https://gyazo.com/47095be0fe0f60ade0e0cdf95860ba33)
