@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe JapaneseFood, type: :model do
+RSpec.describe Food, type: :model do
   describe "associations" do
     it { should belong_to(:shop) }
     it { should have_many(:order_foods) }
