@@ -59,3 +59,10 @@ end
   setup_shop
   setup_customer
 end
+
+addr1, addr2 = Address.all.sort{|a, b| b.orders.size <=> a.orders.size }.first(2)
+if addr1.orders.size == addr2.orders.size
+  addr.orders.last.destroy
+end
+# first, second = addresses.first(2).map{|addr| addr.orders.size }
+# first, second = addresses.first(2).map{|addr| addr.orders.size }
