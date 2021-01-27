@@ -5,4 +5,11 @@ RSpec.describe Address, type: :model do
     it { should belong_to(:addressable) }
     it { should have_many(:orders) }
   end
+
+  it "description" do
+    
+    binding.pry
+    
+  end
+  
 end
