@@ -56,8 +56,11 @@ def setup_customer
 end
 
 100.times do
-  setup_shop
-  setup_customer
+  begin
+    setup_shop
+    setup_customer
+  rescue => e
+  end
 end
 
 # 要件で求める期待する出力結果を確実にするように
