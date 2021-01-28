@@ -60,9 +60,14 @@ end
   setup_customer
 end
 
+# 要件で求める期待する出力結果を確実にするように
 addr1, addr2 = Address.all.sort{|a, b| b.orders.size <=> a.orders.size }.first(2)
 if addr1.orders.size == addr2.orders.size
-  addr.orders.last.destroy
+  addr2.orders.last.destroy
 end
-# first, second = addresses.first(2).map{|addr| addr.orders.size }
-# first, second = addresses.first(2).map{|addr| addr.orders.size }
+
+Customer.module_eval { def foods_price_sum; orders.map(&:foods).flatten.sum(&:price); end }
+c1, c2 = Customer.all.sort{|a, b| b.foods_price_sum <=> a.foods_price_sum }.first(2)
+if c1.foods_price_sum == c2.foods_price_sum
+  c2.orders.last.destroy
+end
