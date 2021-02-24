@@ -63,14 +63,15 @@ end
   end
 end
 
-# 要件で求める期待する出力結果を確実にするように
-addr1, addr2 = Address.all.sort{|a, b| b.orders.size <=> a.orders.size }.first(2)
-if addr1.orders.size == addr2.orders.size
-  addr2.orders.last.destroy
+# exercise3(配達先の一番多い住所を返すこと)で、最大の注文数が同じ住所が出てしまわないように調整
+target_addrs = Address.includes(:orders).group_by{|addr| addr.orders.size }.max[1]
+if target_addrs.size > 1
+  target_addrs[1..target_addrs.size-1].each{|addr| addr.orders.first.destroy}
 end
 
+# exercise4(一番お金を使っている顧客を返すこと)で、同額の顧客が出てしまわないように調整
 Customer.module_eval { def foods_price_sum; orders.map(&:foods).flatten.sum(&:price); end }
-c1, c2 = Customer.all.sort{|a, b| b.foods_price_sum <=> a.foods_price_sum }.first(2)
-if c1.foods_price_sum == c2.foods_price_sum
-  c2.orders.last.destroy
+target_customers = Customer.includes(orders: :foods).group_by{|customer| customer.foods_price_sum }.max[1]
+if target_customers.size > 1
+  target_customers[1..target_customers.size-1].each{|customer| customer.orders.first.destroy}
 end
