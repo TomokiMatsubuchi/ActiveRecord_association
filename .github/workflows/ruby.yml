@@ -36,8 +36,6 @@ jobs:
           git clone https://github.com/diveintocode-corp/cdp_web_rails_table_join_task_evaluation_code.git spec
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Add Spec Test"
       - name: Create Evaluation File
         env:
           RAILS_ENV: "test"
