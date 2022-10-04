@@ -15,10 +15,8 @@ class ExercisesController < ApplicationController
     # 【要件】配達先の一番多い住所を返すこと
     #   * joinsを使うこと
     #   * 取得したAddressのインスタンスにorders_countと呼びかけると注文の数を返すこと
-    @address = Address.joins(:orders).group("postalcode").order("count_all DESC").count.first
-    def orders_count
-      self[1]
-    end  
+    @address = Address.joins(:orders).select("addresses.*, count(orders.*) as orders_count").group("addresses.id").order("orders_count DESC").first
+    
     @address.orders_count
   end
 
@@ -26,11 +24,7 @@ class ExercisesController < ApplicationController
     # 【要件】一番お金を使っている顧客を返すこと
     #   * joinsを使うこと
     #   * 取得したCustomerのインスタンスにfoods_price_sumと呼びかけると合計金額を返すこと
-    @customer = Customer.joins(:orders).group("customers.name").order("count_all DESC").count.first[0]
-    def foods_price_sum
-      price_sum = Customer.joins(orders: :foods).group("customers.name").sum("foods.price")
-      price_sum.values_at(self)
-    end
-    @customer.foods_price_sum[0]
+    @customer = Customer.joins(orders: :foods).select("customers.*, sum(foods.price) as foods_price_sum").group("customers.id").order("foods_price_sum DESC").first
+    @customer.foods_price_sum
   end
 end
