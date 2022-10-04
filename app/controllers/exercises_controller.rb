@@ -29,8 +29,9 @@ class ExercisesController < ApplicationController
     #   * 取得したCustomerのインスタンスにfoods_price_sumと呼びかけると合計金額を返すこと
     @customer = Customer.joins(:orders).group("customers.name").order("count_all DESC").count.first[0]
     def foods_price_sum
-      Customer.joins(orders: :foods).group("customers.name").sum("foods.price")
+      price_sum = Customer.joins(orders: :foods).group("customers.name").sum("foods.price")
+      price_sum.values_at(self)
     end
-    @customer.foods_price_sum
+    @customer.foods_price_sum[0]
   end
 end
